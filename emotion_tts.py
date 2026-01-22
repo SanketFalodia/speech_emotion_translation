@@ -1,3 +1,4 @@
+'''
 """
 Advanced Emotional Text-to-Speech Module
 Implements realistic emotional characteristics through multiple audio processing techniques
@@ -368,3 +369,57 @@ if __name__ == "__main__":
             print(f"❌ Error: {e}")
             import traceback
             traceback.print_exc()
+'''
+
+######
+
+# emotion_tts.py
+
+import os
+from gtts import gTTS
+import uuid
+
+class AdvancedEmotionalTTS:
+    """
+    Emotion-aware TTS generator.
+    Uses gTTS for simplicity, but tags emotion for future prosody/emotion control.
+    """
+
+    def __init__(self):
+        self.generated_files = []
+
+    def generate_emotional_speech(self, text, lang='en', emotion='neutral', confidence=1.0):
+        """
+        Args:
+            text (str): Text to convert to speech
+            lang (str): Language code ('en', 'hi', etc.)
+            emotion (str): Emotion label ('joy', 'sadness', 'anger', etc.)
+            confidence (float): Confidence score (0-1)
+        
+        Returns:
+            str: Path to generated audio file
+        """
+        # Modify text slightly to simulate emotion effect (placeholder)
+        emotion_prefix = f"[{emotion.upper()} {int(confidence*100)}%] "
+        text_to_speak = emotion_prefix + text
+
+        # Generate unique filename
+        filename = f"tts_output_{uuid.uuid4().hex}.mp3"
+        tts = gTTS(text=text_to_speak, lang=lang)
+        tts.save(filename)
+
+        self.generated_files.append(filename)
+        return filename
+
+    def cleanup(self):
+        """Delete all generated audio files"""
+        for f in self.generated_files:
+            if os.path.exists(f):
+                os.remove(f)
+        self.generated_files = []
+
+# Example usage
+if __name__ == "__main__":
+    tts = AdvancedEmotionalTTS()
+    file_path = tts.generate_emotional_speech("Hello world! This is a test.", emotion="joy", confidence=0.9)
+    print(f"Generated speech file: {file_path}")
