@@ -1,0 +1,54 @@
+# Application Configuration
+
+app:
+  title: "🎙️ Emotion-Preserving Speech Translation"
+  description: "Real-time translation with emotional prosody control"
+  layout: "wide"
+  theme: "light"
+
+performance:
+  target_latency_ms: 2500
+  enable_parallel_processing: true
+  enable_caching: true
+  cache_ttl_seconds: 3600
+  max_workers: 4
+
+services:
+  speech_recognition:
+    provider: "whisper"
+    model_size: "base"  # tiny, base, small, medium, large
+    language: "auto"
+    task: "transcribe"
+    
+  emotion_detection:
+    provider: "librosa"
+    use_acoustic_features: true
+    emotions: ["joy", "sadness", "anger", "fear", "surprise", "neutral"]
+    confidence_threshold: 0.3
+    
+  translation:
+    provider: "google"  # or "deepl", "azure"
+    timeout_seconds: 10
+    
+  tts:
+    provider: "gTTS"  # or "pyttsx3", "elevenlabs"
+    language: "auto"
+    speed_factor: 1.0
+
+audio:
+  sample_rate: 16000
+  channels: 1
+  duration_seconds: 60
+  max_file_size_mb: 50
+  format: "wav"
+
+languages:
+  source: ["en", "hi", "bn", "es", "fr", "de", "ta", "te"]
+  target: ["en", "hi", "bn", "es", "fr", "de", "ta", "te"]
+
+ui:
+  show_latency_breakdown: true
+  show_emotion_visualization: true
+  show_comparison_panel: true
+  enable_download: true
+  enable_sharing: true

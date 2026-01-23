@@ -1,0 +1,31 @@
+
+# Backend (FastAPI)
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+python-multipart==0.0.6
+
+# Frontend (Streamlit)
+streamlit==1.28.1
+requests==2.31.0
+
+# Audio Processing (Compatible versions)
+numpy==1.26.0
+scipy==1.11.4
+librosa==0.10.0
+soundfile==0.12.1
+pydub==0.25.1
+sounddevice==0.4.6
+
+# Speech & NLP (With correct dependencies)
+pandas==2.1.1
+gTTS==2.4.0
+SpeechRecognition==3.10.0
+transformers==4.35.0
+torch==2.0.1
+langdetect==1.0.9
+deep-translator==1.11.4
+
+# Additional utilities
+python-dotenv==1.0.0
+pydantic-settings==2.1.0
